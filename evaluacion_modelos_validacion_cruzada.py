@@ -15,6 +15,7 @@ Autor: [Tu nombre]
 Fecha: [Fecha actual]
 """
 
+# %%
 # =============================================================================
 # PASO 1: IMPORTAR LAS BIBLIOTECAS NECESARIAS
 # =============================================================================
@@ -51,6 +52,7 @@ pd.set_option('display.width', None)
 
 print("✓ Bibliotecas importadas exitosamente")
 
+# %%
 # =============================================================================
 # PASO 2: CARGAR LOS DATOS
 # =============================================================================
@@ -106,6 +108,7 @@ def cargar_datos():
     
     return X, y, feature_names, target_names, df_iris
 
+# %%
 # =============================================================================
 # PASO 3: VISUALIZACIÓN EXPLORATORIA DE LOS DATOS
 # =============================================================================
@@ -166,6 +169,7 @@ def visualizar_datos(df_iris, feature_names, target_names):
     print("\n=== MATRIZ DE CORRELACIÓN ===")
     print(correlation_matrix.round(3))
 
+# %%
 # =============================================================================
 # PASO 4: PREPROCESAMIENTO DE DATOS
 # =============================================================================
@@ -210,6 +214,7 @@ def preprocesar_datos(X, feature_names):
     
     return X_scaled, df_scaled
 
+# %%
 # =============================================================================
 # PASO 5: DEFINIR LOS MODELOS A EVALUAR
 # =============================================================================
@@ -249,6 +254,7 @@ def definir_modelos():
     
     return models
 
+# %%
 # =============================================================================
 # PASO 6: DEFINIR LA ESTRATEGIA DE VALIDACIÓN CRUZADA
 # =============================================================================
@@ -284,6 +290,7 @@ def definir_estrategias_cv():
     
     return cv_strategies, main_cv
 
+# %%
 # =============================================================================
 # PASO 7: DEFINIR LAS MÉTRICAS DE EVALUACIÓN
 # =============================================================================
@@ -323,6 +330,7 @@ def definir_metricas():
     
     return metrics
 
+# %%
 # =============================================================================
 # PASO 8: REALIZAR VALIDACIÓN CRUZADA CON MÚLTIPLES MÉTRICAS
 # =============================================================================
@@ -375,6 +383,7 @@ def realizar_validacion_cruzada(models, X_scaled, y, main_cv, metrics):
     
     return results
 
+# %%
 # =============================================================================
 # PASO 9: CALCULAR Y MOSTRAR LAS PUNTUACIONES MEDIAS
 # =============================================================================
@@ -426,6 +435,7 @@ def calcular_puntuaciones_medias(results, models, metrics):
     
     return results_df, pivot_results
 
+# %%
 # =============================================================================
 # PASO 10: VISUALIZAR LOS RESULTADOS
 # =============================================================================
@@ -494,6 +504,7 @@ def visualizar_resultados(results_df, pivot_results, models, results):
     plt.tight_layout()
     plt.show()
 
+# %%
 # =============================================================================
 # PASO 11: ANÁLISIS DETALLADO DEL MEJOR MODELO
 # =============================================================================
@@ -569,6 +580,7 @@ def analizar_mejor_modelo(results, models, X_scaled, y, target_names):
     
     return best_model_name, best_model
 
+# %%
 # =============================================================================
 # PASO 12: COMPARACIÓN DE ESTRATEGIAS DE VALIDACIÓN CRUZADA
 # =============================================================================
@@ -624,6 +636,7 @@ def comparar_estrategias_cv(cv_strategies, best_model, X_scaled, y):
     plt.tight_layout()
     plt.show()
 
+# %%
 # =============================================================================
 # PASO 13: RESUMEN Y CONCLUSIONES
 # =============================================================================
@@ -699,6 +712,56 @@ def generar_resumen(results, models, metrics, best_model_name, main_cv):
     
     print("\n5. TABLA DE RECOMENDACIONES:")
     print(recommendations_df.to_string(index=False))
+
+# %%
+# =============================================================================
+# RESUMEN EJECUTIVO - EJECUTAR TODO EL ANÁLISIS
+# =============================================================================
+
+# Ejecutar todo el análisis paso a paso
+print("="*80)
+print("EVALUACIÓN DE MODELOS DE MACHINE LEARNING USANDO VALIDACIÓN CRUZADA")
+print("="*80)
+
+# Paso 2: Cargar los datos
+X, y, feature_names, target_names, df_iris = cargar_datos()
+
+# Paso 3: Visualización exploratoria
+visualizar_datos(df_iris, feature_names, target_names)
+
+# Paso 4: Preprocesamiento
+X_scaled, df_scaled = preprocesar_datos(X, feature_names)
+
+# Paso 5: Definir modelos
+models = definir_modelos()
+
+# Paso 6: Definir estrategias de validación cruzada
+cv_strategies, main_cv = definir_estrategias_cv()
+
+# Paso 7: Definir métricas
+metrics = definir_metricas()
+
+# Paso 8: Realizar validación cruzada
+results = realizar_validacion_cruzada(models, X_scaled, y, main_cv, metrics)
+
+# Paso 9: Calcular puntuaciones medias
+results_df, pivot_results = calcular_puntuaciones_medias(results, models, metrics)
+
+# Paso 10: Visualizar resultados
+visualizar_resultados(results_df, pivot_results, models, results)
+
+# Paso 11: Análisis del mejor modelo
+best_model_name, best_model = analizar_mejor_modelo(results, models, X_scaled, y, target_names)
+
+# Paso 12: Comparar estrategias de validación cruzada
+comparar_estrategias_cv(cv_strategies, best_model, X_scaled, y)
+
+# Paso 13: Generar resumen
+generar_resumen(results, models, metrics, best_model_name, main_cv)
+
+print("\n" + "="*80)
+print("¡EVALUACIÓN COMPLETADA EXITOSAMENTE!")
+print("="*80)
 
 # =============================================================================
 # FUNCIÓN PRINCIPAL
