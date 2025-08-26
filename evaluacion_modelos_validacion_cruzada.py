@@ -430,7 +430,7 @@ def calcular_puntuaciones_medias(results, models, metrics):
 # PASO 10: VISUALIZAR LOS RESULTADOS
 # =============================================================================
 
-def visualizar_resultados(results_df, pivot_results, models):
+def visualizar_resultados(results_df, pivot_results, models, results):
     """
     Crea visualizaciones para comparar el rendimiento de los diferentes modelos.
     
@@ -438,6 +438,7 @@ def visualizar_resultados(results_df, pivot_results, models):
         results_df (DataFrame): DataFrame con resultados completos
         pivot_results (DataFrame): Tabla pivot con resultados
         models (dict): Modelos evaluados
+        results (dict): Resultados originales de validación cruzada
     """
     print("\n" + "="*60)
     print("PASO 10: VISUALIZAR LOS RESULTADOS")
@@ -739,7 +740,7 @@ def main():
         results_df, pivot_results = calcular_puntuaciones_medias(results, models, metrics)
         
         # Paso 10: Visualizar resultados
-        visualizar_resultados(results_df, pivot_results, models)
+        visualizar_resultados(results_df, pivot_results, models, results)
         
         # Paso 11: Análisis del mejor modelo
         best_model_name, best_model = analizar_mejor_modelo(results, models, X_scaled, y, target_names)
